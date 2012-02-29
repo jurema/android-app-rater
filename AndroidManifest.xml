@@ -13,7 +13,7 @@
         android:label="@string/app_name" >
         <activity
             android:label="@string/app_name"
-            android:name=".Example" >
+            android:name="la.jurema.apprater.examples.Example" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 

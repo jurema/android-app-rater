@@ -1,5 +1,6 @@
-package la.jurema.android.app.rater;
+package la.jurema.apprater.manager;
 
+import la.jurema.apprater.utils.LogManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;

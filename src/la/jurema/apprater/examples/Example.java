@@ -1,5 +1,7 @@
-package la.jurema.android.app.rater;
+package la.jurema.apprater.examples;
 
+import la.jurema.android.app.rater.R;
+import la.jurema.apprater.manager.Rate;
 import android.app.Activity;
 import android.os.Bundle;
 

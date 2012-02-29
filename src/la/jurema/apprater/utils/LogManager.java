@@ -1,4 +1,4 @@
-package la.jurema.android.app.rater;
+package la.jurema.apprater.utils;
 
 import android.util.Log;
 

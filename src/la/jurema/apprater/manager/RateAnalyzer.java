@@ -1,5 +1,7 @@
-package la.jurema.android.app.rater;
+package la.jurema.apprater.manager;
 
+import la.jurema.apprater.utils.LogManager;
+import la.jurema.apprater.utils.ManipuleDate;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
