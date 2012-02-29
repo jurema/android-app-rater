@@ -1,5 +1,6 @@
 *.jar
 *.class
 /bin/*
-/res/*
+/assets/*
+
 
