@@ -10,10 +10,10 @@ public class Example extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.app_rater_main);
 
-		Rate.configure(this, 0, 0,0,0, "br.com.icarros.androidapp", null, "Mensagem",
-				"Vote", "Depois", "Não votar", true);
+		Rate.configure(this, 0, 0,0,0, "br.com.icarros.androidapp", null, "Message",
+				"Rate", "Later", "No rate", true);
 		Rate.onCreate();
 	}
 	

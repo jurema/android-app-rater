@@ -1,13 +1,18 @@
 package la.jurema.apprater.manager;
 
+import la.jurema.apprate.R;
 import la.jurema.apprater.utils.LogManager;
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class Rate implements DialogInterface.OnCancelListener,DialogInterface.OnClickListener{
+public class Rate implements DialogInterface.OnCancelListener{
 
 	public static Context context;
 	public static String packpageInMarket;
@@ -22,6 +27,7 @@ public class Rate implements DialogInterface.OnCancelListener,DialogInterface.On
 	public static Integer daysIntervalFirst;
 	public static Integer opensIntervalFirst;
 	public static boolean showInSecion;
+	private static Dialog alertRate;
 	
 	/**
 	 * 
@@ -94,15 +100,77 @@ public class Rate implements DialogInterface.OnCancelListener,DialogInterface.On
 		if(!showInSecion){
 			showInSecion = true;
 			
-			LogManager.print("Showing dialog");
-			
-			AlertDialog.Builder alertRate = new AlertDialog.Builder(context);
-			if(title!=null)alertRate.setTitle(title);
-			if(message!=null)alertRate.setMessage(message);
-			if(rateText!=null)alertRate.setPositiveButton(rateText, new Rate());
-			if(remindLaterText!=null)alertRate.setNeutralButton(remindLaterText, new Rate());
-			if(noRateText!=null)alertRate.setNegativeButton(noRateText, new Rate());
+			alertRate = (title!=null?new Dialog(context):new Dialog(context,R.style.CustomDialogTheme));
+			alertRate.setContentView(R.layout.app_rater_message);
+			alertRate.setCancelable(true);
 			alertRate.setOnCancelListener(new Rate());
+			
+			Button btnPositive = (Button) alertRate.findViewById(R.id.btn_vote);
+			Button btnNeutral = (Button) alertRate.findViewById(R.id.btn_later);
+			Button btnNegative = (Button) alertRate.findViewById(R.id.btn_never);
+			TextView txtMessage = (TextView) alertRate.findViewById(R.id.txt_message);
+			
+			LinearLayout.LayoutParams lpInvisible = new LinearLayout.LayoutParams(0, 0);
+			
+			if(title!=null){
+				alertRate.setTitle(title);
+			}
+			if(message!=null){
+				txtMessage.setText(message);
+			}else{
+				txtMessage.setLayoutParams(lpInvisible);
+			}
+			if(rateText!=null){
+				btnPositive.setText(rateText);
+				btnPositive.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						LogManager.print(rateText+" selected");
+						rateAnalyzer.resultToHistory(RateAnalyzer.TYPE_SHOW_RATE);
+						if(packpageInMarket!=null){
+							try{
+								Intent intent = new Intent(Intent.ACTION_VIEW);
+								intent.setData(Uri.parse("market://details?id="+packpageInMarket));
+								context.startActivity(intent);
+							}catch (Exception e) {
+								LogManager.print("Device dont have market app");
+							}
+						}else{
+							LogManager.print("packpage is null");
+						}
+						alertRate.cancel();
+					}
+				});
+			}else{
+				btnPositive.setLayoutParams(lpInvisible);
+			}
+			if(remindLaterText!=null){
+				btnNeutral.setText(remindLaterText);
+				btnNeutral.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						LogManager.print(remindLaterText+" selected");
+						rateAnalyzer.resultToHistory(RateAnalyzer.TYPE_SHOW_LATER);
+						alertRate.cancel();
+					}
+				});
+			}else{
+				btnNeutral.setLayoutParams(lpInvisible);
+			}
+			if(noRateText!=null){
+				btnNegative.setText(noRateText);
+				btnNegative.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						LogManager.print(noRateText+" selected");
+						rateAnalyzer.resultToHistory(RateAnalyzer.TYPE_SHOW_CANCEL);
+						alertRate.cancel();
+					}
+				});
+			}else{
+				btnNegative.setLayoutParams(lpInvisible);
+			}
+			
 			alertRate.show();
 		}
 	}
@@ -111,34 +179,6 @@ public class Rate implements DialogInterface.OnCancelListener,DialogInterface.On
 	public void onCancel(DialogInterface dialog) {
 		LogManager.print("Canceled box");
 		rateAnalyzer.resultToHistory(RateAnalyzer.TYPE_SHOW_BACK);
-	}
-
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		LogManager.print(which);
-		switch (which) {
-		case DialogInterface.BUTTON_POSITIVE:
-			LogManager.print(rateText+" selected");
-			rateAnalyzer.resultToHistory(RateAnalyzer.TYPE_SHOW_RATE);
-			try{
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setData(Uri.parse("market://details?id="+packpageInMarket));
-				context.startActivity(intent);
-			}catch (Exception e) {
-				LogManager.print("Device dont have market app");
-			}
-			break;
-		case DialogInterface.BUTTON_NEUTRAL:
-			LogManager.print(remindLaterText+" selected");
-			rateAnalyzer.resultToHistory(RateAnalyzer.TYPE_SHOW_LATER);
-			break;
-		case DialogInterface.BUTTON_NEGATIVE:
-			rateAnalyzer.resultToHistory(RateAnalyzer.TYPE_SHOW_CANCEL);
-			LogManager.print(noRateText+" selected");
-			break;
-		default:
-			break;
-		}
 	}
 
 }
