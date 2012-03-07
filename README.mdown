@@ -1,0 +1,44 @@
+How to use Jurema App Rater
+
+1º import the the apprate project to your workspace and uses it like a library
+
+	how to make this?
+	http://developer.android.com/guide/developing/projects/projects-eclipse.html
+
+2º in your activity oncreate you call the followrs commands:
+
+	Rate.configure( 
+		your context , 
+		days intervalor fist show ,
+		opens interval for fist show ,
+		days interval for second and subsequent shows ,
+		opens interval for second and subsequent shows ,
+		your packpage application in android market ,
+		title of rate dialog ,
+		message of rate dialog ,
+		text of rate button ,
+		text of later button ,
+		text of never rate button ,
+		ans show or not thhe apprate log );
+
+	example:
+
+	Rate.configure(
+                this ,	//indispensable
+                15 ,	//Integer
+                100 ,	//Integer
+                3 ,	//Integer
+                45 ,	//Integer
+                "com.jurema.moove" ,	//indispensable
+                "Title of rate box" ,	//send null to no show title in rate box
+                "This is a message of rate box" ,   //send null to no shoe message in rate box
+                "rate-me" ,   //send null to no show rate button
+                "reminder later" ,   //send null to no show reminder button
+                "no and never" ,   //send null to no show never rate button
+                true );   //send false to no show apprate log
+
+3º in your onDestroy method you call Rate.onDestroy(); to close all conections with sqlite if you dont call this method in ondestroy or other place You may experience problems
+
+4º hereafter is optional, but you need to follow steps 1,2 and 3 to make this third:
+
+	in onresume method you call	 Rate.onResume();	 to cont show in ever shows and not only in first application show.
