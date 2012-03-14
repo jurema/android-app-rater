@@ -3,8 +3,9 @@ How to use Android App Rater
 
 1º Import the App Rater Project to your workspace and use it like a library
 
-	How to make this?
-	http://developer.android.com/guide/developing/projects/projects-eclipse.html
+__How to make this?__
+
+http://developer.android.com/guide/developing/projects/projects-eclipse.html
 
 2º In your main activity, call the follow command inside of oncreate method:
 
@@ -22,7 +23,7 @@ How to use Android App Rater
 		text of never rate button ,
 		show or not show the app rater log );
 
-Example:
+__Example__
 
 	Rate.configure(this, 15, 100, 3, 45, "com.jurema.moove", "Rate my App", "If you enjoy my app, take a moment to rate it. Thanks!", "Rate now", "Remind me later", "No, thanks", true);
 
