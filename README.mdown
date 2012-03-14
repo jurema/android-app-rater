@@ -1,15 +1,16 @@
-How to use Jurema App Rater
+How to use Android App Rater
+============================
 
-1º import the the apprate project to your workspace and uses it like a library
+1º Import the App Rater Project to your workspace and use it like a library
 
-	how to make this?
+	How to make this?
 	http://developer.android.com/guide/developing/projects/projects-eclipse.html
 
-2º in your activity oncreate you call the followrs commands:
+2º In your main activity, call the follow command inside of oncreate method:
 
 	Rate.configure( 
 		your context , 
-		days intervalor fist show ,
+		days interval for first show ,
 		opens interval for fist show ,
 		days interval for second and subsequent shows ,
 		opens interval for second and subsequent shows ,
@@ -19,26 +20,12 @@ How to use Jurema App Rater
 		text of rate button ,
 		text of later button ,
 		text of never rate button ,
-		ans show or not thhe apprate log );
+		show or not show the app rater log );
 
 	example:
 
-	Rate.configure(
-                this ,	//indispensable
-                15 ,	//Integer
-                100 ,	//Integer
-                3 ,	//Integer
-                45 ,	//Integer
-                "com.jurema.moove" ,	//indispensable
-                "Title of rate box" ,	//send null to no show title in rate box
-                "This is a message of rate box" ,   //send null to no shoe message in rate box
-                "rate-me" ,   //send null to no show rate button
-                "reminder later" ,   //send null to no show reminder button
-                "no and never" ,   //send null to no show never rate button
-                true );   //send false to no show apprate log
+	Rate.configure(this, 15, 100, 3, 45, "com.jurema.moove", "Rate my App", "If you enjoy my app, take a moment to rate it. Thanks!", "Rate now", "Remind me later", "No, thanks", true);
 
-3º in your onDestroy method you call Rate.onDestroy(); to close all conections with sqlite if you dont call this method in ondestroy or other place You may experience problems
+3º In your main activity, inside onDestroy method, call [Rate.onDestroy();].
 
-4º hereafter is optional, but you need to follow steps 1,2 and 3 to make this third:
-
-	in onresume method you call	 Rate.onResume();	 to cont show in ever shows and not only in first application show.
+4º In your main activity, inside onResume method, call [Rate.onResume();].
