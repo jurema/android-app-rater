@@ -8,23 +8,23 @@ How to use Android App Rater
 
 2º In your main activity, call the follow command inside of oncreate method:
 
-`Rate.configure( 
-	your context , 
-	days interval for first show ,
-	opens interval for fist show ,
-	days interval for second and subsequent shows ,
-	opens interval for second and subsequent shows ,
-	your packpage application in android market ,
-	title of rate dialog ,
-	message of rate dialog ,
-	text of rate button ,
-	text of later button ,
-	text of never rate button ,
-	show or not show the app rater log );`
+	Rate.configure( 
+		your context , 
+		days interval for first show ,
+		opens interval for fist show ,
+		days interval for second and subsequent shows ,
+		opens interval for second and subsequent shows ,
+		your packpage application in android market ,
+		title of rate dialog ,
+		message of rate dialog ,
+		text of rate button ,
+		text of later button ,
+		text of never rate button ,
+		show or not show the app rater log );
 
 Example:
 
-`Rate.configure(this, 15, 100, 3, 45, "com.jurema.moove", "Rate my App", "If you enjoy my app, take a moment to rate it. Thanks!", "Rate now", "Remind me later", "No, thanks", true);`
+	Rate.configure(this, 15, 100, 3, 45, "com.jurema.moove", "Rate my App", "If you enjoy my app, take a moment to rate it. Thanks!", "Rate now", "Remind me later", "No, thanks", true);
 
 3º In your main activity, inside onDestroy method, call `.Rate.onDestroy();`.
 
