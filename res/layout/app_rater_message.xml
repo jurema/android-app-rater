@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:minWidth="200dp"
-    android:id="@+id/ll_backGorund">
+    android:id="@+id/ll_backGorund"
+    style="@android:style/Theme.Dialog">
 
     <LinearLayout
         android:id="@+id/ll_scroll_parent"
@@ -41,7 +42,9 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="20dp"
                         android:minHeight="50dp"
-	                    android:text="Message" />
+	                    android:text="Message" 
+	                    android:textSize="18dp" 
+	                    android:textColor="#ffffff"/>
                     
                 </LinearLayout>
                 
@@ -55,7 +58,11 @@
         android:id="@+id/ll_buttons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
 
         <Button
             android:id="@+id/btn_vote"
