@@ -2,13 +2,12 @@ How to use Android App Rater
 ============================
 
 1º Import the App Rater Project to your workspace and use it like a library
----------------------------------------------------------------------------
 
 __How to make this?__
 http://developer.android.com/guide/developing/projects/projects-eclipse.html
 
 2º In your main activity, call the follow command inside of oncreate method:
----------------------------------------------------------------------------
+
 	Rate.configure( 
 		your context , 
 		days interval for first show ,
@@ -28,7 +27,5 @@ __Example__
 	Rate.configure(this, 15, 100, 3, 45, "com.jurema.moove", "Rate my App", "If you enjoy my app, take a moment to rate it. Thanks!", "Rate now", "Remind me later", "No, thanks", true);
 
 3º In your main activity, inside onDestroy method, call `.Rate.onDestroy();`.
------------------------------------------------------------------------------
 
 4º In your main activity, inside onResume method, call `Rate.onResume();`.
------------------------------------------------------------------------------
